@@ -1,0 +1,28 @@
+/* default page setting */
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	min-height: 100vh;
+	font-family: sans-serif;
+}
+
+body {
+	padding-top: 80px;
+}
+
+
+/* link color */
+a.default-link {
+	color: #1abc9c;
+	text-decoration: none;
+	margin-left: 0.5rem;
+	transition: color 0.3s ease;
+}
+  
+/* link style */
+a.default-link:hover {
+	text-decoration: underline;
+	color: #1a7765;
+}
+  

@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TagList from '../components/TagList.astro';
+import { blogs } from '../data/blogs';
+
+---
+
+<Layout title="Blog">
+  <section class="blog-list">
+    <h2>Blog</h2>
+
+    <input id="blog-search" class="search-box" placeholder="Search blogs..." />
+
+    <div class="grid">
+      {blogs.map(blog => (
+        <div class="card" data-title={blog.title.toLowerCase()} data-desc={blog.description.toLowerCase()} data-tags={blog.tags.join(' ').toLowerCase()}>
+          <a href={blog.link} class="card-link">
+            {blog.cover && <img src={blog.cover} alt="Blog cover" class="cover" />}
+            <h3>{blog.title}</h3>
+            <p class="description">{blog.description}</p>
+            <TagList tags={blog.tags} />
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <script src="/js/blog-search.js" defer></script>
+
+  <style>
+    .blog-list {
+      padding: 2rem 4vw;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      padding: 1rem;
+    }
+
+    .cover {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-bottom: 1px solid #eee;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .card h3 {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .description {
+      color: #666;
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+    }
+  </style>
+</Layout>

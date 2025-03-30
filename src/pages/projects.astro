@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TagList from '../components/TagList.astro';
+
+const projects = [
+  {
+    id: 'software001',
+    title: 'HoarePrompt: Structural Reasoning About Program Correctness in Natural Language',
+    description: '',
+    authors: 'Dimitrios Stamatios Bouras, Yihan Dai, Tairan Wang, Yingfei Xiong, Sergey Mechtaev',
+    tags: ['Software Engineering', 'Prompt Engineering', 'LLM'],
+    status: 'arxiv',
+    paper: "https://arxiv.org/abs/2503.19599",
+    presentation: null,
+  },
+  {
+    id: 'math001',
+    title: 'Axiom of Choice',
+    description: 'Well-Ordering Theorem, Axiom of Choice, and Zorn’s Lemma, Applications of Zorn’s Lemma, Banach-Tarski Paradox, Independence of the Axiom of Choice',
+    authors: 'Travor Liu, Yi Liu, Daya Singh, Tairan Wang',
+    tags: ['Math', 'Axiom of Choice'],
+    status: 'presentation',
+    paper: null,
+    presentation: '/presentation/ac-slides.pdf',
+  },
+];
+
+let search = '';
+const filtered = projects.filter(p =>
+  p.title.toLowerCase().includes(search) ||
+  p.description.toLowerCase().includes(search) ||
+  p.authors.toLowerCase().includes(search) ||
+  (p.tags && p.tags.some(tag => tag.toLowerCase().includes(search)))
+);
+---
+
+<Layout title="Projects">
+  <section class="project-list">
+    <h2>Projects</h2>
+
+    <!-- Search (will use JS-enhanced version later) -->
+    <input id="project-search" class="search-box" placeholder="Search projects..." />
+
+    {projects.map(project => (
+      <div
+        class="project-block"
+        id={project.id}
+        data-title={project.title.toLowerCase()}
+        data-authors={project.authors.toLowerCase()}
+        data-tags={project.tags.join(' ').toLowerCase()}
+      >
+        <h3>
+          {project.title}
+          <span class={`status-badge ${project.status}`}>{project.status}</span>
+        </h3>
+
+        {project.description && <p class="description">{project.description}</p>}
+        <p class="authors"><strong>Authors:</strong> {project.authors}</p>
+
+        <TagList tags={project.tags} />
+
+        <div class="links">
+          {project.paper && (
+            <a href={project.paper} target="_blank" rel="noopener noreferrer" class="default-link">📄 Paper</a>
+          )}
+          {project.presentation && (
+            <a href={project.presentation} target="_blank" rel="noopener noreferrer" class="default-link">🔗 Presentation</a>
+          )}
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <style>
+    .project-list {
+      padding: 2rem 4vw;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .project-block {
+      background: #fff;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .project-block:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-block h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .description {
+      margin: 0.3rem 0 0.8rem;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .authors {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .links {
+      margin-top: 0.5rem;
+    }
+
+    /* current status */
+    .status-badge {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-left: 0.6rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .arxiv {
+      background-color: #f6e58d;
+      color: #7f5f00;
+    }
+
+    .presentation {
+      background-color: #dff9fb;
+      color: #0a3d62;
+    }
+
+    .conference {
+      background-color: #c8d6e5;
+      color: #1e3799;
+    }
+  </style>
+</Layout>

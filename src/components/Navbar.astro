@@ -1,0 +1,54 @@
+---
+const { isHidden = false } = Astro.props;
+---
+
+<nav class="floating-navbar" class:hide={isHidden}>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+
+<style>
+.floating-navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(44, 62, 80, 0.9);
+  border-radius: 12px;
+  padding: 0.75rem 3rem;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  font-size: 1.2rem;
+}
+
+.floating-navbar ul {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.floating-navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.floating-navbar a:hover {
+  color: #1abc9c;
+}
+
+.hide {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-20px);
+}
+</style>
