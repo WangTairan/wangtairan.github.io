@@ -51,4 +51,18 @@ const { isHidden = false } = Astro.props;
   pointer-events: none;
   transform: translateX(-50%) translateY(-20px);
 }
+
+@media (max-width: 600px) {
+  .floating-navbar {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .floating-navbar ul {
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
 </style>
