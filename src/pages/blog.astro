@@ -1,9 +1,11 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import TagList from '../components/TagList.astro';
-import { blogs } from '../data/blogs';
 
----
+const posts = (await getCollection('blog')).sort((a, b) =>
+  b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);---
 
 <Layout title="Blog">
   <section class="blog-list">
@@ -12,13 +14,22 @@ import { blogs } from '../data/blogs';
     <input id="blog-search" class="search-box" placeholder="Search blogs..." />
 
     <div class="grid">
-      {blogs.map(blog => (
-        <div class="card" data-title={blog.title.toLowerCase()} data-desc={blog.description.toLowerCase()} data-tags={blog.tags.join(' ').toLowerCase()}>
-          <a href={blog.link} class="card-link">
-            {blog.cover && <img src={blog.cover} alt="Blog cover" class="cover" />}
-            <h3>{blog.title}</h3>
-            <p class="description">{blog.description}</p>
-            <TagList tags={blog.tags} />
+      {posts.map(post => (
+        <div
+          class="card"
+          data-title={post.data.title.toLowerCase()}
+          data-desc={post.data.description.toLowerCase()}
+          data-tags={post.data.tags?.join(' ').toLowerCase()}
+        >
+          <a href={`/blog/${post.slug}`} class="card-link">
+            <img
+              src={post.data.cover ?? '/images/default-cover.png'}
+              alt="cover"
+              class="cover"
+            />
+            <h3>{post.data.title}</h3>
+            <p class="description">{post.data.description}</p>
+            <TagList tags={post.data.tags} />
           </a>
         </div>
       ))}
@@ -76,6 +87,12 @@ import { blogs } from '../data/blogs';
       border-radius: 12px 12px 0 0;
     }
 
+    .card-link h3,
+    .card-link p {
+      margin: 0;
+      margin-top: 1rem;
+    }
+
     .card h3 {
       margin-top: 1rem;
       font-size: 1.2rem;
@@ -85,6 +102,13 @@ import { blogs } from '../data/blogs';
       color: #666;
       font-size: 0.95rem;
       margin-top: 0.5rem;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 2;       /* 限制为 2 行 */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-height: 2.6em;            /* 保持两行高度，即使内容不足 */
     }
   </style>
 </Layout>
