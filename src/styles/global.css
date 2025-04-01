@@ -7,11 +7,6 @@ html, body {
 	font-family: sans-serif;
 }
 
-body {
-	padding-top: 80px;
-}
-
-
 /* link color */
 a.default-link {
 	color: #1abc9c;

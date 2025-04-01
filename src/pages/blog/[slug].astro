@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import TagList from '../../components/TagList.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  console.log('[blog slugs]', posts.map(p => p.slug));
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title}>
+  <article class="blog-post">
+    <h1>{post.data.title}</h1>
+    <p class="blog-date">{post.data.pubDate.toDateString()}</p>
+    <TagList tags={post.data.tags} />
+    {post.data.cover && <img src={post.data.cover} alt="cover" class="blog-cover" />}
+    <div class="blog-body">
+      <Content />
+    </div>
+  </article>
+
+  <style>
+    .blog-post {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .blog-date {
+      font-size: 0.9rem;
+      color: #888;
+      margin-bottom: 1rem;
+    }
+
+    .blog-cover {
+      width: 100%;
+      margin: 1rem 0 2rem;
+      border-radius: 12px;
+    }
+
+    .blog-body {
+      line-height: 1.75;
+      color: #333;
+    }
+  </style>
+</Layout>

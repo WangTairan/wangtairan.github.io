@@ -1,68 +1,69 @@
----
-const { isHidden = false } = Astro.props;
----
-
-<nav class="floating-navbar" class:hide={isHidden}>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/projects">Projects</a></li>
-    <li><a href="/blog">Blog</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/contact">Contact</a></li>
-  </ul>
+<nav class="top-navbar">
+  <div class="navbar-inner">
+    <ul class="nav-left">
+      <li><a href="/">Home</a></li>
+    </ul>
+    <ul class="nav-right">
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/blog">Blog</a></li>
+    </ul>
+  </div>
 </nav>
 
 <style>
-.floating-navbar {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(44, 62, 80, 0.9);
-  border-radius: 12px;
-  padding: 0.75rem 3rem;
+/* 整个导航栏背景条 */
+.top-navbar {
+  width: 100%;
+  background-color: rgba(14, 63, 112, 0.95);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
   z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  font-size: 1.2rem;
 }
 
-.floating-navbar ul {
+/* 限宽 + 居中内容 */
+.navbar-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0.75rem 2rem;
   display: flex;
-  gap: 3rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 两组导航项 */
+.navbar-inner ul {
+  display: flex;
+  gap: 2rem;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 1.2rem 2rem;
 }
 
-.floating-navbar a {
+.navbar-inner a {
   color: white;
   text-decoration: none;
   font-weight: bold;
+  font-size: 1.1rem;
   transition: color 0.3s ease;
 }
 
-.floating-navbar a:hover {
+.navbar-inner a:hover {
   color: #1abc9c;
 }
 
-.hide {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(-50%) translateY(-20px);
-}
-
+/* 响应式处理 */
 @media (max-width: 600px) {
-  .floating-navbar {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+  .navbar-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
   }
 
-  .floating-navbar ul {
+  .nav-left,
+  .nav-right {
     gap: 1.2rem;
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
   }
 }
-
 </style>
