@@ -13,7 +13,10 @@
     "@astrojs/mdx": "^4.2.2",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.3.0",
-    "astro": "^5.5.5"
+    "astro": "^5.5.5",
+    "katex": "^0.16.21",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0"

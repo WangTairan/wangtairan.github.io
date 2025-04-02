@@ -21,3 +21,13 @@ a.default-link:hover {
 	color: #1a7765;
 }
   
+p code,
+li code,
+span code {
+	background-color: #cccccc; /* 深色背景 */
+	color: #ac1919;           /* 亮色文字 */
+	padding: 0.2em 0.4em;
+	border-radius: 4px;
+	font-size: 0.95em;
+	font-family: Consolas, Monaco, 'Courier New', monospace;
+}
