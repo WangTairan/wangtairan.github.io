@@ -31,3 +31,13 @@ span code {
 	font-size: 0.95em;
 	font-family: Consolas, Monaco, 'Courier New', monospace;
 }
+
+blockquote {
+	background-color: #f0f0f0; /* 淡灰色背景 */
+	border-left: 4px solid #ccc;
+	padding: 0.3em 0.3em;
+	margin: 1em 0;
+	font-style: italic;
+	color: #333;
+  }
+  

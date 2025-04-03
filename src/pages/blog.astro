@@ -5,7 +5,8 @@ import TagList from '../components/TagList.astro';
 
 const posts = (await getCollection('blog')).sort((a, b) =>
   b.data.pubDate.getTime() - a.data.pubDate.getTime()
-);---
+);
+---
 
 <Layout title="Blog">
   <section class="blog-list">
@@ -101,14 +102,16 @@ const posts = (await getCollection('blog')).sort((a, b) =>
     .description {
       color: #666;
       font-size: 0.95rem;
+      line-height: 1.4;
       margin-top: 0.5rem;
 
       display: -webkit-box;
-      -webkit-line-clamp: 2;       /* 限制为 2 行 */
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      min-height: 2.6em;            /* 保持两行高度，即使内容不足 */
+
+      max-height: calc(1.4em * 2); /* 正确限制两行 */
     }
   </style>
 </Layout>
