@@ -86,7 +86,7 @@ $$
 \end{aligned}
 $$
 
-For the input `11001`, the Turing machine runs on the tape as follows:
+For the input `10011`, the Turing machine runs on the tape as follows:
 <div style="overflow-x: auto; white-space: nowrap;">
   <table style="border-spacing: 0;">
     <tr>
@@ -188,7 +188,7 @@ A UTM does exist, and can be constructed in various ways. One possible structure
 The Halting Problem is a decision problem: given a Turing machine $M$ and an input $x$, determine whether $M$ halts on $x$. The corresponding language can be defined as:
 
 $$
-\text{HALT} = \{ \langle y, x \rangle \in \Sigma^* \times \Sigma^* \mid y = \text{code}(\mathcal{M}) \text{ and } \mathcal{M} \text{ halts on } x \}
+\text{HALT} = \{ \langle y, x \rangle \in \Sigma^* \times \Sigma^* \mid y = \text{code}(M) \text{ and } M \text{ halts on } x \}
 $$
 
 We already know that $\text{HALT}$ is recognizable. Now, we will prove that it is undecidable.  
@@ -208,10 +208,10 @@ Now we construct a Turing machine $M'$ that takes an input $z \in \Sigma^*$, the
   </table>
 </div>
 
-Now consider feeding $\text{code}(M')$ as input to $M'$:
+Now consider feeding $\text{code}(M')$ as input to $M'$. The execution flow of $M'$ is as follows:
 
 1. $M'$ runs $M_H$ on input $\langle \text{code}(M'), \text{code}(M') \rangle$.
-2. If $M'$ halts on input $\text{code}(M')$, then $M_H$ accepts; otherwise, it rejects.
+2. Then $M_H$ decides whether $M'$ halts on input $\text{code}(M')$. If $M'$ halts on input $\text{code}(M')$, then $M_H$ accepts; otherwise, it rejects.
 3. If $M_H$ accepts $\langle \text{code}(M'), \text{code}(M') \rangle$, then $M'$ enters an infinite loop;  
 if $M_H$ rejects $\langle \text{code}(M'), \text{code}(M') \rangle$, then $M'$ accepts $\text{code}(M')$.
 
@@ -223,6 +223,14 @@ but in fact $M'$ enters an infinite loop on that case.
 but in fact $M'$ halts.
 
 This contradiction shows that no Turing machine $M_H$ can decide the language $\text{HALT}$.
+
+
+
+## Conclusion
+
+We have now proven that the Halting Problem is undecidable, and that no known real-world computational model can solve it. But how can we deal with it—or at least work around it?
+
+The answer is to place restrictions on the Halting Problem. For example: does Turing machine $M$ halt on input $x$ within 100 steps? This version is clearly decidable.
 
 
 
