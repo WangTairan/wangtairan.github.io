@@ -17,7 +17,7 @@ For the second question, the Turing machine offers a formal mathematical model f
 
 - If an algorithm runs in polynomial time on a Turing machine, it will also run in polynomial time on a RAM model—that is, on real-world devices like smartphones and computers.
 
-> *“Any function that can be computed algorithmically can also be computed by a Turing machine.”*  
+> Any function that can be computed algorithmically can also be computed by a Turing machine.  
 > — Church–Turing Thesis
 
 Therefore, if we prove that a problem cannot be solved by a Turing machine, then no programming language, RAM model, or even any other computing model can solve it.
