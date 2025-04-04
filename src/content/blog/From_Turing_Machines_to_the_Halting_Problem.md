@@ -2,7 +2,7 @@
 title: 'From Turing Machines to the Halting Problem'
 description: "An introduction to Turing machines, decision problems, and the proof of the Halting Problem's undecidability."
 pubDate: 'Apr 01 2025'
-tags: ['Computability Theory', 'Turing Machine', 'Halt Problem']
+tags: ['Computability Theory']
 ---
 
 ## Why Turing Machines?
@@ -127,7 +127,7 @@ To formally define a decision problem, we consider that for any input string, th
 - The string is a YES instance.
 - The string is a NO instance.
 
-We define the set of all YES-instance strings as the language $L$. A Turing machine that solves this decision problem acts as a decision function: when given input $x \in L$, it halts in state $q_{accept}$; otherwise, it halts in state $q_{reject}$.
+We define the set of all YES-instance strings as the language $L$ (languages are just subsets of $\Sigma^*$). A Turing machine that solves this decision problem acts as a decision function: when given input $x \in L$, it halts in state $q_{accept}$; otherwise, it halts in state $q_{reject}$.
 
 For example, consider the problem of determining whether a number is even, and the Turing machine $ M$ that solves it.
 
@@ -143,11 +143,11 @@ Take the parity-checking problem for positive integers as an example. If the alp
 
 Therefore, we need to define what makes an encoding valid or invalid. For a problem and data instance $\alpha$, a valid encoding system should satisfy:
 
-1. **Uniqueness**: If $\alpha \ne \beta$, then $\text{code}(\alpha) \ne \text{code}(\beta)$.
-2. **Recognizability**: We should be able to determine whether a string $x \in \Sigma^*$ is a valid encoding of some $\alpha$.
-3. **Recoverability**: It must be possible to recover the original $\alpha$ from $\text{code}(\alpha)$.
+1. If $\alpha \ne \beta$, then $\text{code}(\alpha) \ne \text{code}(\beta)$.
+2. We should be able to determine whether a string $x \in \Sigma^*$ is a valid encoding of some $\alpha$.
+3. It must be possible to recover the original $\alpha$ from $\text{code}(\alpha)$.
 
-For point 2, recognizability helps us check whether the input is a valid instance of the problem. For example, in the positive integer parity-checking problem over the alphabet $\{0, 1, \dots, 9, \sqcup\}$, the string "0" is not a valid encoding, since 0 is not a positive integer. Therefore, it is not the encoding of any valid data $\alpha$.
+For point 2, recognizability helps us check whether the input is a valid instance of the problem. For example, in the positive integer parity-checking problem over the alphabet $\{0, 1, \dots, 9, \sqcup\}$, the string "0" is not a valid encoding, since 0 is not a positive integer. Therefore, it is not the encoding of any valid data $\alpha$. Other examples of invalid encodings might include $0034$ or $3\sqcup 5$.
 
 In decision problems, inputs that are invalid or do not belong to the problem domain—along with the NO instances—together form the set of inputs that the Turing machine should reject.
 
@@ -223,6 +223,30 @@ but in fact $M'$ enters an infinite loop on that case.
 but in fact $M'$ halts.
 
 This contradiction shows that no Turing machine $M_H$ can decide the language $\text{HALT}$.
+
+
+
+## The Unrecognizability of the Complement of HALT
+
+The language HALT is recognizable. As a direct consequence, its complement, $\text{HALT}^-$, is **not** recognizable.
+
+$$
+\text{HALT}^- = \{ \langle y, x \rangle \in \Sigma^* \times \Sigma^* \mid y \ne \text{code}(M) \text{ for any } M \text{ or } y = \text{code}(M) \text{ and } M \text{ does not halt on } x \}
+$$
+
+We use **proof by contradiction**: suppose there exists a Turing machine $M_{HC}$ that recognizes $\text{HALT}^-$. Together with a machine $M_H$ that recognizes $\text{HALT}$, we can construct the following machine $M$ decides $\text{HALT}$:
+
+<div style="overflow-x: auto; white-space: nowrap;">
+  <table style="border-spacing: 0;">
+    <tr>
+      <td><img src="/images/blog/halting/htm.svg" alt="HTM" width="500"/></td>
+    </tr>
+  </table>
+</div>
+
+The input $x$ is given to both $M_H$ and $M_{HC}$, which run in parallel. The simplest method is to let each machine execute one step at a time, alternating between them. Since $M_H$ and $M_{HC}$ recognize $\text{HALT}$ and $\text{HALT}^-$ respectively, for any $\langle y, x \rangle \in \text{HALT}$, $M_H$ will halt and accept; otherwise, $M_{HC}$ will halt and accept.
+
+This proof idea applies to any recognizable language—in fact, the complement of any recognizable language is not recognizable.
 
 
 
