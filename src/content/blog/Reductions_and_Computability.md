@@ -1,8 +1,9 @@
 ---
-title: 'Reductions and Computability'
-description: ""
+title: 'Mapping Reductions in Computability Theory'
+description: "Explore how mapping reduction helps us understand the limits of computation, from the Halting Problem to Rice’s Theorem."
 pubDate: 'Apr 03 2025'
 tags: ['Computability Theory']
+cover: '/images/blog/reduction_and_computability/cover.webp'
 ---
 
 ## Introduction
@@ -199,13 +200,13 @@ Fix a property $P$. Assume that the empty language does **not** have this proper
 - Otherwise, let $M = \text{decode}(y)$, and define $f(\langle y, x \rangle) = \text{code}(M_{M,x})$, where $M_{M,x}$ is constructed as follows:
   1. On any input $z$, $M_{M,x}$ first simulates $M$ on input $x$;
   2. If $M$ halts, then it simulates $M_P$ on input $z$;
-  3. If $M_P$ accept the input $z$, then $M_{M,x}$ accepts the input $z$.
+  3. If $M_P$ halts, then $M_{M,x}$ halts on the input $z$.
 
 Now, for a valid encoding $\langle y, x \rangle$:
 
-- If $\langle y, x \rangle \in \text{HALT}$, then $M$ halts on input $x$. Then, if $M_P$ accepts some input $z$, so does $M_{M,x}$. In this case, $M_{M,x}$ recognizes the same language as $M_P$, so $P(\text{code}(M_{M,x})) = P(\text{code}(M_P)) = 1$.
+- If $\langle y, x \rangle \in \text{HALT}$, then $M$ halts on input $x$. Then, if $M_P$ halts on some input $z$, so does $M_{M,x}$. In this case, $M_{M,x}$ recognizes the same language as $M_P$, so $P(\text{code}(M_{M,x})) = P(\text{code}(M_P)) = 1$.
 
-- If $\langle y, x \rangle \notin \text{HALT}$, then $M$ does not halt on input $x$, so $M_{M,x}$ does not accept any input $z$. In this case, $M_{M,x}$ recognizes the same language as $M_\emptyset$, so $P(\text{code}(M_{M,x})) = P(\text{code}(M_\emptyset)) = 0$.
+- If $\langle y, x \rangle \notin \text{HALT}$, then $M$ does not halt on input $x$, so $M_{M,x}$ does not halts on any input $z$. In this case, $M_{M,x}$ recognizes the same language as $M_\emptyset$, so $P(\text{code}(M_{M,x})) = P(\text{code}(M_\emptyset)) = 0$.
 
 For an invalid encoding $\langle y, x \rangle$, we also have $\langle y, x \rangle \notin \text{HALT}$, and we defined $f(\langle y, x \rangle) = \text{code}(M_\emptyset)$, so $P(\text{code}(M_\emptyset)) = 0$.
 

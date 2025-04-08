@@ -3,6 +3,7 @@ title: 'From Turing Machines to the Halting Problem'
 description: "An introduction to Turing machines, decision problems, and the proof of the Halting Problem's undecidability."
 pubDate: 'Apr 01 2025'
 tags: ['Computability Theory']
+cover: '/images/blog/halting/halting_cover.webp'
 ---
 
 ## Why Turing Machines?
@@ -163,9 +164,9 @@ If there exists a Turing machine $M$ that decides a language $L$, then the langu
 
 If no Turing machine $M$ exists that decides a language $L$, then the language and its corresponding decision problem are called **undecidable** or **unsolvable**.  
 
-Among these, some problems are still **recognizable**—meaning there exists a Turing machine that accepts all YES-instances (and halts in finite steps), but dose not halt on NO-instances.
+Among these, some problems are still **recognizable**—meaning there exists a Turing machine that halts on all YES-instances, but dose not halt on NO-instances.
 
-Clearly, the Halting Problem is a recognizable problem. We can simply run the given Turing machine on the given input (see following section): if the machine halts, we accept it. If it does not halt, we make no decision.
+Clearly, the Halting Problem is a recognizable problem. We can simply run the given Turing machine on the given input (see following section): if the machine halts, we also halts. If it does not halt, we make no decision.
 
 
 
