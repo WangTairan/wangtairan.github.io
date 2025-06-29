@@ -7,6 +7,9 @@ import Layout from '../layouts/Layout.astro';
   <section class="home-container">
     <div class="photo-container">
       <img src="/profile.jpg" alt="Wang Tairan" />
+      <p class="photo-caption">
+        June 2025, England Coast Path, Clevedon
+      </p>
     </div>
     <div class="intro-container">
       <h1>Welcome!</h1>
@@ -72,8 +75,14 @@ import Layout from '../layouts/Layout.astro';
 .photo-container img {
   max-width: 300px;
   max-height: 300px;
-  border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.photo-caption {
+  margin-top: 0.5rem;
+  font-size: 0.6rem;
+  color: #666;
+  text-align: center;
 }
 
 .intro-container {

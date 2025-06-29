@@ -182,7 +182,7 @@ $$
 P = \{ \text{code}(M) \mid L(M) \in \mathcal{S} \}
 $$
 
-Note that $P$ is a set of Turing machine codes, **not** a set of languages. This refers to a property of the Turing machine $M$, but one that depends **only** on the language it recognizes. A language $L(M)$ is a subset of $\Sigma^*$, and any description of this set constitutes a language property. For example: whether $L(M)$ is finite, or whether the string "abc" belongs to $L(M)$, are both properties of the language $L(M)$.
+Note that $P$ is a set of Turing machine codes, **not** a set of languages. This refers to a property of the Turing machine $M$, but one that depends **only** on the language it recognizes. A language $L(M)$ is a subset of $\Sigma^*$, and any description of this set constitutes a language property. For example: whether $L(M)$ is finite.
 
 In other words, even if two Turing machines $M_1$ and $M_2$ are different, as long as they recognize the same language—that is, $L(M_1) = L(M_2)$—then we have $P(M_1) = P(M_2)$.
 
