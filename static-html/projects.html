@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./logo.png" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="./js/project-search.js" defer></script>
+  </head>
+  <body>
+    <nav class="top-navbar">
+      <div class="navbar-inner">
+        <ul class="nav-left">
+          <li><a href="./index.html">Home</a></li>
+        </ul>
+        <ul class="nav-right">
+          <li><a href="./projects.html">Projects</a></li>
+          <li><a href="./blog/index.html">Blog</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <section class="project-list">
+        <h2>Projects</h2>
+
+        <input id="project-search" class="search-box" placeholder="Search projects..." />
+
+        <div
+          class="project-block"
+          id="software001"
+          data-title="hoareprompt: structural reasoning about program correctness in natural language"
+          data-authors="dimitrios stamatios bouras, yihan dai, tairan wang, yingfei xiong, sergey mechtaev"
+          data-tags="software engineering prompt engineering llm"
+        >
+          <h3>
+            HoarePrompt: Structural Reasoning About Program Correctness in Natural Language
+            <span class="status-badge arxiv">arxiv</span>
+          </h3>
+
+          <p class="authors"><strong>Authors:</strong> Dimitrios Stamatios Bouras, Yihan Dai, Tairan Wang, Yingfei Xiong, Sergey Mechtaev</p>
+
+          <div class="tags">
+            <span class="tag">Software Engineering</span>
+            <span class="tag">Prompt Engineering</span>
+            <span class="tag">LLM</span>
+          </div>
+
+          <div class="links">
+            <a href="https://arxiv.org/abs/2503.19599" target="_blank" rel="noopener noreferrer" class="default-link">📄 Paper</a>
+          </div>
+        </div>
+
+        <div
+          class="project-block"
+          id="math001"
+          data-title="axiom of choice"
+          data-authors="travor liu, yi liu, daya singh, tairan wang"
+          data-tags="math axiom of choice"
+        >
+          <h3>
+            Axiom of Choice
+            <span class="status-badge presentation">presentation</span>
+          </h3>
+
+          <p class="description">Well-Ordering Theorem, Axiom of Choice, and Zorn’s Lemma, Applications of Zorn’s Lemma, Banach-Tarski Paradox, Independence of the Axiom of Choice</p>
+          <p class="authors"><strong>Authors:</strong> Travor Liu, Yi Liu, Daya Singh, Tairan Wang</p>
+
+          <div class="tags">
+            <span class="tag">Math</span>
+            <span class="tag">Axiom of Choice</span>
+          </div>
+
+          <div class="links">
+            <a href="./presentation/ac-slides.pdf" target="_blank" rel="noopener noreferrer" class="default-link">🔗 Presentation</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
