@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../logo.png" />
+    <link rel="stylesheet" href="../assets/style.css" />
+    <script src="../js/blog-search.js" defer></script>
+  </head>
+  <body>
+    <nav class="top-navbar">
+      <div class="navbar-inner">
+        <ul class="nav-left">
+          <li><a href="../index.html">Home</a></li>
+        </ul>
+        <ul class="nav-right">
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="./index.html">Blog</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <section class="blog-list">
+        <h2>Blog</h2>
+
+        <input id="blog-search" class="search-box" placeholder="Search blogs..." />
+
+        <div class="grid">
+          <div
+            class="card"
+            data-title="mapping reductions in computability theory"
+            data-desc="explore how mapping reduction helps us understand the limits of computation, from the halting problem to rice’s theorem."
+            data-tags="computability theory"
+          >
+            <a href="./reductions_and_computability.html" class="card-link">
+              <img src="../images/blog/reduction_and_computability/cover.webp" alt="cover" class="cover" />
+              <h3>Mapping Reductions in Computability Theory</h3>
+              <p class="description truncate">Explore how mapping reduction helps us understand the limits of computation, from the Halting Problem to Rice’s Theorem.</p>
+              <div class="tags">
+                <span class="tag">Computability Theory</span>
+              </div>
+            </a>
+          </div>
+
+          <div
+            class="card"
+            data-title="from turing machines to the halting problem"
+            data-desc="an introduction to turing machines, decision problems, and the proof of the halting problem's undecidability."
+            data-tags="computability theory"
+          >
+            <a href="./from_turing_machines_to_the_halting_problem.html" class="card-link">
+              <img src="../images/blog/halting/halting_cover.webp" alt="cover" class="cover" />
+              <h3>From Turing Machines to the Halting Problem</h3>
+              <p class="description truncate">An introduction to Turing machines, decision problems, and the proof of the Halting Problem's undecidability.</p>
+              <div class="tags">
+                <span class="tag">Computability Theory</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
