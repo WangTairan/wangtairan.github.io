@@ -1,0 +1,39 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+a.default-link {
+  color: #1abc9c;
+  text-decoration: none;
+  margin-left: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+a.default-link:hover {
+  text-decoration: underline;
+  color: #1a7765;
+}
+
+p code,
+li code,
+span code {
+  background-color: #cccccc;
+  color: #ac1919;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.95em;
+  font-family: Consolas, Monaco, 'Courier New', monospace;
+}
+
+blockquote {
+  background-color: #f0f0f0;
+  border-left: 4px solid #ccc;
+  padding: 0.3em 0.3em;
+  margin: 1em 0;
+  font-style: italic;
+  color: #333;
+}
