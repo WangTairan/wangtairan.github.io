@@ -77,6 +77,7 @@
 
 .search-box {
   width: 100%;
+  box-sizing: border-box;
   padding: 0.6rem 1rem;
   margin-bottom: 2rem;
   font-size: 1rem;
@@ -120,26 +121,32 @@
 
 .status-badge {
   font-size: 0.75rem;
-  text-transform: uppercase;
   margin-left: 0.6rem;
   padding: 0.2rem 0.5rem;
   border-radius: 6px;
   font-weight: 600;
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .arxiv {
-  background-color: #f6e58d;
-  color: #7f5f00;
+  background-color: #eceff1;
+  color: #56616b;
 }
 
 .presentation {
-  background-color: #dff9fb;
-  color: #0a3d62;
+  background-color: #e8edf3;
+  color: #40566d;
 }
 
 .conference {
-  background-color: #c8d6e5;
-  color: #1e3799;
+  background-color: #d9eee7;
+  color: #176b55;
+}
+
+.award {
+  background-color: #f4ead0;
+  color: #765616;
 }
 
 /* Blog list */
