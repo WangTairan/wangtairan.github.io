@@ -45,6 +45,42 @@
   margin-top: 2rem;
 }
 
+.company-section {
+  margin-top: 2rem;
+}
+
+.company-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+}
+
+.company-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #0e3f70;
+  text-decoration: none;
+  font-size: 1.17rem;
+  font-weight: 700;
+}
+
+.company-link:hover {
+  color: #1abc9c;
+}
+
+.company-logo {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+.company-role {
+  color: #666;
+  font-size: 0.95rem;
+}
+
 .letter-date {
   font-size: 0.85rem;
   color: #888;
@@ -137,6 +173,11 @@
 .presentation {
   background-color: #e8edf3;
   color: #40566d;
+}
+
+.thesis {
+  background-color: #e9e4f2;
+  color: #5e4a7d;
 }
 
 .conference {
