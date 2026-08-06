@@ -31,6 +31,7 @@ static-html/
     ├── personal/               Résumé, profile photo, and site logo
     ├── letters/                Recommendation letters
     ├── publications/           Local papers and presentation files
+    ├── brands/                 Organization and company logos
     └── icons/                  Site and social icons
 ```
 
