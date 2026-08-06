@@ -25,10 +25,13 @@ static-html/
 ├── js/
 │   ├── project-search.js       Client-side project filtering
 │   └── blog-search.js          Client-side blog filtering
-├── images/                     Icons, covers, and article figures
-├── letter/                     Recommendation letters
-├── presentation/               Presentation PDFs
-└── resume.pdf                  Public résumé
+├── images/
+│   └── blog/                   Covers and article-specific figures
+└── resources/
+    ├── personal/               Résumé, profile photo, and site logo
+    ├── letters/                Recommendation letters
+    ├── publications/           Local papers and presentation files
+    └── icons/                  Site and social icons
 ```
 
 ## Editing conventions
@@ -53,6 +56,9 @@ static-html/
   `rel="noopener noreferrer"`.
 - Blog articles contain pre-rendered KaTeX markup and load KaTeX CSS from a CDN.
   Treat these files carefully: large one-line sections are expected.
+- Keep blog figures inside the corresponding `images/blog/<article>/` folder.
+  Do not introduce a shared `images/blog/common/` directory; duplicate small
+  shared figures into each article folder so every article owns its resources.
 - Binary assets such as the résumé, letters, profile photo, and logo are public
   site content. Do not replace them unless the task explicitly requests it.
 
@@ -79,6 +85,7 @@ Useful non-visual checks:
 
 ```sh
 git diff --check
+python3 scripts/check_local_links.py
 curl -I http://localhost:4173/
 curl -I http://localhost:4173/projects.html
 curl -I http://localhost:4173/blog/
