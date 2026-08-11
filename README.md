@@ -43,8 +43,9 @@ static-html/
   `index.html`, `projects.html`, `blog/index.html`, and every blog article.
 - All pages load `assets/style.css`, which imports the three CSS layers listed
   above. Put new rules in the most specific existing layer.
-- Project search reads `data-title`, `data-authors`, and `data-tags` from every
-  `.project-block`. Keep those attributes in sync with visible content.
+- Project search reads `data-title`, `data-authors`, `data-tags`, and `data-date`
+  from every `.project-block`. Keep those metadata attributes accurate; project
+  dates are stored for ordering and search but are not displayed.
 - Blog search similarly reads `data-title`, `data-desc`, and `data-tags` from
   every `.card`.
 - Use an arXiv primary subject as the first research tag where applicable, then
