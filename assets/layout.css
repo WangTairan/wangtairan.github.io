@@ -51,6 +51,8 @@
 }
 
 .photo-container img {
+  width: 100%;
+  height: auto;
   max-width: 300px;
   max-height: 300px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -77,6 +79,22 @@
   font-size: 1.2rem;
   line-height: 1.6;
   color: #444;
+}
+
+@media (max-width: 600px) {
+  .home-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .photo-container {
+    width: 100%;
+    text-align: center;
+  }
+
+  .intro-container {
+    flex-basis: 100%;
+    margin-top: 0;
+  }
 }
 
 .about,
