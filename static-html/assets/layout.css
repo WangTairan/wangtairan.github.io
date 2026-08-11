@@ -51,7 +51,8 @@
 }
 
 .photo-container img {
-  width: 100%;
+  display: block;
+  width: auto;
   height: auto;
   max-width: 300px;
   max-height: 300px;
@@ -89,6 +90,11 @@
   .photo-container {
     width: 100%;
     text-align: center;
+  }
+
+  .photo-container img {
+    max-width: 100%;
+    margin: 0 auto;
   }
 
   .intro-container {
