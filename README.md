@@ -39,6 +39,10 @@ static-html/
 
 - Keep the site dependency-light and usable without JavaScript, except for the
   optional search filters.
+- Home includes a manually maintained News panel, ordered newest first. Use
+  semantic dates and link news items to project anchors where relevant. Its
+  height is capped for scrolling; it sits beside the introduction on desktop
+  and below it on narrower screens.
 - Navigation markup is duplicated across pages. If navigation changes, update
   `index.html`, `projects.html`, `blog/index.html`, and every blog article.
 - All pages load `assets/style.css`, which imports the three CSS layers listed
@@ -46,6 +50,10 @@ static-html/
 - Project search reads `data-title`, `data-authors`, `data-tags`, and `data-date`
   from every `.project-block`. Keep those metadata attributes accurate; project
   dates are stored for ordering and search but are not displayed.
+  Use the project's original date, not later acceptance or award dates, for
+  `data-date`; retain submission, acceptance, and award dates as separate event
+  attributes. An arXiv first-submission date is a public record, not proof of
+  when the underlying research began.
 - Blog search similarly reads `data-title`, `data-desc`, and `data-tags` from
   every `.card`.
 - Use an arXiv primary subject as the first research tag where applicable, then
@@ -56,6 +64,14 @@ static-html/
   as plain lowercase text.
 - External links must use `target="_blank"` together with
   `rel="noopener noreferrer"`.
+- Research papers use `Paper` for the local PDF and a separate `arXiv` link
+  for the public abstract page when available. Theses and presentations without
+  a corresponding public paper page retain their local links only.
+- Project links use custom SVG icons from `resources/icons/` via the
+  `paper-link`, `arxiv-link`, `thesis-link`, and `presentation-link` classes.
+  Keep these monochrome, consistently sized icons instead of emoji.
+- Accepted papers also use a `Conference` link with `conference-link` when an
+  official paper-specific conference page is publicly accessible.
 - Blog articles contain pre-rendered KaTeX markup and load KaTeX CSS from a CDN.
   Treat these files carefully: large one-line sections are expected.
 - Keep blog figures inside the corresponding `images/blog/<article>/` folder.
