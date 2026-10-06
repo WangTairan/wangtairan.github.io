@@ -43,6 +43,20 @@ static-html/
   semantic dates and link news items to project anchors where relevant. Its
   height is capped for scrolling; it sits beside the introduction on desktop
   and below it on narrower screens.
+- Portraits live in `resources/personal/portraits/`, with untouched source files
+  in `originals/` and 900×1200 (3:4) cropped files in `display/`, using
+  month-based filenames such as `profile-2026-09.png`. Home references only
+  `display/`. Add `.photo-slide` figures newest first in
+  Home, with ISO `data-date`, a descriptive `data-label`, and a dated caption.
+  The first (latest) portrait is the default; `photo-carousel.js` creates dots
+  for all slides, supports keyboard navigation, and keeps the active dot in
+  sync with native touch scrolling. Do not autoplay or stretch portraits.
+  Crop files with ordinary image tools, aligning head size and top clearance;
+  do not regenerate or retouch faces. Keep the shared 3:4 `.photo-frame` at
+  225×300 on normal screens, without per-photo CSS crop offsets.
+  Current source crop rectangles (x, y, width, height): September 2026 uses
+  (15, 210, 990, 1320); June 2025 uses (440, 480, 2040, 2720), then downsamples
+  to 900×1200. Original dimensions and bytes must remain unchanged.
 - Navigation markup is duplicated across pages. If navigation changes, update
   `index.html`, `projects.html`, `blog/index.html`, and every blog article.
 - All pages load `assets/style.css`, which imports the three CSS layers listed
