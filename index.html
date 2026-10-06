@@ -5,7 +5,8 @@
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="./resources/personal/logo.png" />
-    <link rel="stylesheet" href="./assets/style.css?v=3" />
+    <link rel="stylesheet" href="./assets/style.css?v=12" />
+    <script src="./js/photo-carousel.js" defer></script>
   </head>
   <body>
     <nav class="top-navbar">
@@ -22,11 +23,23 @@
 
     <main>
       <section class="home-container">
-        <div class="photo-container">
-          <img src="./resources/personal/profile.jpg" alt="Wang Tairan" />
-          <p class="photo-caption">
-            June 2025, England Coast Path, Clevedon
-          </p>
+        <div class="photo-container" role="region" aria-roledescription="carousel" aria-label="Portraits of Tairan Wang">
+          <div class="photo-track" tabindex="0" aria-label="Swipe or use arrow keys to browse portraits">
+            <figure class="photo-slide" data-date="2026-09" data-label="September 2026">
+              <div class="photo-frame">
+                <img src="./resources/personal/portraits/display/profile-2026-09.png?v=2" alt="Tairan Wang in a white shirt and tie" width="900" height="1200" />
+              </div>
+              <figcaption class="photo-caption"><time datetime="2026-09">September 2026</time></figcaption>
+            </figure>
+            <figure class="photo-slide" data-date="2025-06" data-label="June 2025, England Coast Path, Clevedon">
+              <div class="photo-frame">
+                <img src="./resources/personal/portraits/display/profile-2025-06.jpg?v=2" alt="Tairan Wang on the England Coast Path in Clevedon" width="900" height="1200" loading="lazy" />
+              </div>
+              <figcaption class="photo-caption"><time datetime="2025-06">June 2025</time>, England Coast Path, Clevedon</figcaption>
+            </figure>
+          </div>
+          <div class="photo-dots" aria-label="Choose a portrait" hidden></div>
+          <p class="photo-status visually-hidden" aria-live="polite" aria-atomic="true"></p>
         </div>
         <div class="intro-container">
           <h1>Tairan Wang</h1>
