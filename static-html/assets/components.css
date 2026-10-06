@@ -293,6 +293,20 @@
 }
 
 /* Blog list */
+.language-switch {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.language-switch [aria-current="page"] {
+  font-weight: 600;
+  color: var(--ink, #222b33);
+  text-decoration: none;
+}
+
 .blog-list {
   padding: 2rem 4vw;
   max-width: 1000px;
@@ -341,6 +355,7 @@
 .card h3 {
   margin-top: 1rem;
   font-size: 1.2rem;
+  line-height: 1.4;
 }
 
 .description {
@@ -350,6 +365,8 @@
   margin-top: 0.5rem;
 }
 
+.card h3,
+.card .description,
 .description.truncate {
   display: -webkit-box;
   -webkit-line-clamp: 2;

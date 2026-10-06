@@ -56,6 +56,15 @@ static-html/
   when the underlying research began.
 - Blog search similarly reads `data-title`, `data-desc`, and `data-tags` from
   every `.card`.
+- Each article has one blog card, regardless of how many translations it has.
+  Link the card to its default language (English for BTTF); include translated
+  titles and keywords in search metadata. Optional `data-article` and
+  `data-languages` attributes identify the article and its available versions.
+  Multilingual articles include a `.language-switch` inside the article, with
+  normal links to available versions, `lang`/`hreflang` language codes, and
+  `aria-current="page"` on the current version. This works without JavaScript
+  and supports any number of versions. Single-language articles omit the
+  switcher entirely; do not create duplicate cards for translations.
 - Use an arXiv primary subject as the first research tag where applicable, then
   add only specific, defensible topic tags.
 - Preserve publication-name capitalization such as `arXiv` and prevent compact

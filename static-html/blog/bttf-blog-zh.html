@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="BTTF 将传统代码度量、语义组织与上下文惊讶度结合为 11 特征可读性模型，让每项评分贡献都可以检查。"><title>BTTF：以人的理解，衡量代码</title><link rel="icon" type="image/png" href="../resources/personal/logo.png"><link rel="stylesheet" href="../assets/style.css?v=7"><style>:root{color-scheme:light;--ink:#222b33;--muted:#606b75;--accent:#17616b;--line:#dce3e6;--paper:#fff;--wash:#f3f7f7}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Arial,sans-serif;font-size:18px;line-height:1.8;-webkit-font-smoothing:antialiased}main{max-width:900px;margin:auto;padding:36px 32px 64px}nav{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px;font-size:15px}nav strong{letter-spacing:.06em}a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:4px}a:hover{text-decoration-thickness:2px}header{padding:42px 0 16px}.eyebrow{font-size:14px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}h1{font-size:clamp(30px,5vw,46px);line-height:1.25;letter-spacing:-.025em;margin:14px 0 20px}h2{font-size:27px;line-height:1.4;margin:46px 0 16px}h3{font-size:21px;line-height:1.4;margin:28px 0 12px}p{margin:14px 0}header .lead{font-size:21px;line-height:1.65}header .byline{font-size:15px;color:var(--muted)}figure{margin:26px 0}figure img{display:block;max-width:100%;height:auto;width:100%;border-radius:6px}figcaption,.caption{font-size:14px;line-height:1.65;color:var(--muted);margin:10px 0 18px}.table-wrap{overflow-x:auto;margin:22px 0 8px}table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.65}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}thead th{background:var(--wash);font-weight:600;border-top:1px solid var(--line)}.number{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.ours{background:#eef6f3}.cloud{background:#f5f7fb}table.features td:first-child{width:24%}table.features td:nth-child(2){width:30%}.equation{margin:22px 0;padding:18px 22px;background:var(--wash);border-left:3px solid var(--accent);font-family:Georgia,"Times New Roman",serif;font-size:21px;overflow-wrap:anywhere}code,pre{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}code{font-size:.89em}pre{padding:20px 22px;background:#f5f6f8;border:1px solid var(--line);border-radius:6px;overflow-x:auto;font-size:14px;line-height:1.8}pre code{font-size:inherit}.kw{color:#7155a1}.fn{color:#17616b}.num{color:#9c5b18}.takeaway{border-left:3px solid var(--accent);padding:2px 0 2px 20px;margin:24px 0}ul,ol{padding-left:24px}li{margin:9px 0}footer{margin-top:46px;padding-top:22px;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}footer p{margin:10px 0}@media(max-width:600px){body{font-size:17px}main{padding:22px 18px 42px}header{padding-top:28px}h2{font-size:24px}th,td{padding:9px 8px}table.features{min-width:640px}.benchmark{min-width:770px}pre{padding:16px 14px;font-size:12px}header .lead{font-size:19px}}@media print{main{max-width:none;padding:0}nav{display:none}a{color:inherit}h2,h3{break-after:avoid}tr,figure{break-inside:avoid}table{font-size:11px}body{font-size:12px}header .lead{font-size:14px}.table-wrap{overflow:visible}.benchmark,table.features{min-width:0!important}}
+header .byline{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px 28px;font-size:18px;color:var(--ink)}header .byline .author{font-weight:600}header .byline time{white-space:nowrap}@media(max-width:600px){header .byline{font-size:17px;gap:8px 20px}}@media print{header .byline{font-size:12px}}
+.top-navbar{display:block;border:0;padding:0;font-size:16px}.navbar-inner{width:100%;line-height:1.4}.navbar-inner li{margin:0}</style></head><body><nav class="top-navbar" aria-label="Main navigation"><div class="navbar-inner"><ul class="nav-left"><li><a href="../index.html">Home</a></li></ul><ul class="nav-right"><li><a href="../projects.html">Projects</a></li><li><a href="./index.html">Blog</a></li></ul></div></nav><main><div class="language-switch" role="navigation" aria-label="文章语言"><a href="./bttf-blog-en.html" lang="en" hreflang="en">English</a><a href="./bttf-blog-zh.html" lang="zh-CN" hreflang="zh-CN" aria-current="page">中文</a></div>
+<header><h1>BTTF：以人的理解，衡量代码</h1><p class="byline"><span class="author">Tairan Wang</span><span>预计阅读 11 分钟</span><time datetime="2026-10-05">2026 年 10 月 5 日</time></p></header>
+
+<p>代码可读性是软件工程中研究已久的经典问题。怎样判断一段代码是否好读，怎样指出它难读的原因，直到今天仍没有得到令人满意的解决。如今，大语言模型在代码生成和理解上表现出色。把一段难读的代码交给它，询问哪里有问题、该怎么改，我们总能得到一些答案。然而，这些答案缺少量化依据，也不够全面，有时甚至不够具体。</p>
+<p>即使让 AI 自动修改代码、提升可读性，也无法保证改后的代码更符合人类的阅读感受。要判断一次修改是否真正让代码更好读，<strong>我们需要与人类判断一致的评分，也需要清楚哪些代码属性影响了评分、影响有多大。</strong></p>
+<p>我们提出了 BTTF（Back to the Future，回到未来），将经典的线性回归与预训练模型提供的新度量结合起来。我们用预训练模型测量代码，通过 11 个特征计算可读性分数。每个特征对分数的贡献都可以查看，哪些属性拉低了评分、影响有多大，也就有了具体依据。<sup class="citation" style="font-size:0.7em;line-height:0;white-space:nowrap">[<a href="#ref-1" aria-label="参考文献 1">1</a>]</sup></p>
+
+<h2>从一段混淆代码看阅读困难</h2>
+<p>下面这段代码用来查找月份偏移值，改编自一个紧凑的星期计算实现。这是一种代码混淆的写法：本来可以直接列出的一组偏移值，被藏进了一个看不出含义的字符串。程序取出字符，读取字符编码，再对七取余，才还原出需要的值。计算没有多复杂，但读者得先解开这层编码，才能看懂原本简单的查表逻辑。</p>
+<figure><img src="../images/blog/bttf-zh/figure-1.png" alt="通过字符串编码月份偏移的 Java 代码。四个传统模型给出第 74 到第 92 百分位的可读性，DeepSeek 为 8.3，BTTF 为 1.9；四项最大惩罚对应赋值、字符串、声明和标识符。" width="2199" height="932"><figcaption>混淆后的月份偏移查找。右上为模型给出的可读性排名，越低表示越难读；右下为 BTTF 中影响最大的扣分项。</figcaption></figure>
+<p>此前的代表性可读性模型在这个例子上都判断错了。这些方法既包括人工设计特征的模型，也包括深度学习模型。它们给出了较高评价，五位开发者却一致给出最低评分。图中的 Posnett、Scalabrino、Dorn 和 Mi 就是这四种方法。<sup class="citation" style="font-size:0.7em;line-height:0;white-space:nowrap">[<a href="#ref-3" aria-label="参考文献 3">3</a>, <a href="#ref-4" aria-label="参考文献 4">4</a>, <a href="#ref-5" aria-label="参考文献 5">5</a>, <a href="#ref-6" aria-label="参考文献 6">6</a>]</sup>读者面对这串字符和取余运算，很难看出它们与月份偏移的关系，更难理解为什么能得到正确的值。</p>
+<p>这个误判暴露了已有指标漏掉的关键：可读性取决于人能否理解代码。长度、结构、文本和视觉属性描述了代码的外在形式，却没有充分刻画读者如何从细节中理解含义、组织信息、建立前后联系。这里的混淆恰好破坏了这个过程：查找表被压缩成几个字符，读者却要花更多力气还原它。DeepSeek 和 BTTF 都识别出了这里的困难；BTTF 还指出了拉低评分的具体代码属性。</p>
+<p>而且，已有方法很难把分数转成具体的改进方向。深度学习模型把判断藏在学到的表示里，无法直接列出哪些明确的代码属性造成了扣分。Dorn 和 Scalabrino 虽然有可见的特征，但部分特征的权重方向与其原本含义相反，让“改好这个属性是否就能加分”变得含糊。Posnett 的方向是一致的，却只使用行数和两项综合指标，能概括整段代码，难以指出究竟是哪种写法出了问题。</p>
+<p>在这个例子里，影响最大的是赋值右侧的计算和那串编码字符：只看前面的代码，很难预期这里会出现这样的写法。BTTF 用<strong>赋值值惊讶度</strong>（赋给变量的内容有多出乎预期）和<strong>字面量尾部惊讶度</strong>（代码中最出乎预期的数字或字符串有多难预测）测量这种异常。它们对应的阅读困难很具体：读到这里，我们得停下来，弄清楚这一步为什么要这样写。</p>
+
+<h2>从人的阅读过程出发，重新衡量可读性</h2>
+<p>读一段陌生代码时，我们通常先看懂具体语句，再逐步拼出整段代码的意图。我们很难像计算机那样，精确记住每一个细节，而会边读边理解、归纳：这几个判断是在检查输入，那几次赋值是在更新状态。随着这些含义逐渐清楚，我们便能把握整个程序在做什么，不必一直记着每个变量和操作。<sup class="citation" style="font-size:0.7em;line-height:0;white-space:nowrap">[<a href="#ref-9" aria-label="参考文献 9">9</a>, <a href="#ref-10" aria-label="参考文献 10">10</a>]</sup></p>
+<p>同样的目标，组织不同，理解的难度显然也会不同。一段代码可以先把输入检查写完整，再更新状态；也可以把检查、计算和状态更新穿插在一起。后者需要我们来回连接分散的信息，才能拼出完整逻辑。细节怎样组织、是否顺着前文展开，都会影响阅读。</p>
+<p>因此，除了行长、操作密度这些传统属性，我们还需要知道两件事：代码的含义是否组织清楚，新出现的内容是否接得上前文。</p>
+<h3>语义组织：把零散信息归纳成清晰概念</h3>
+<p>已有的模型没有明确测量读者对代码信息的归纳。深度学习模型依靠数据拟合，把判断留在难以解释的内部表示中；视觉模型主要考察排版和呈现；其他特征模型则组合多个统计属性，其中部分权重方向还与特征含义相反。当关键的阅读因素没有被测量时，继续堆叠混杂的统计指标，也很难补上这个缺口。最后得到的特征组合可以拟合分数，却很难解释阅读困难来自哪里。</p>
+<p>我们的早期模型（只使用嵌入特征的版本，embedding-only）也遇到了这个问题。它测量了语义组织，却缺少对上下文预测难度的直接测量，字节熵因而仍在特征选择中占据重要位置。字节熵能提供统计线索，却说不清具体哪种写法出了问题。加入代码结构层面的惊讶度后，它才被更具体的度量取代。这段经历让我们看到，特征工程首先要补齐对阅读困难的测量；关键因素缺失时，反复筛选和组合现有指标，很容易留下一个预测有效、解释却含糊的模型。</p>
+<p>我们的直觉是，语义相近的名字和操作，更可能服务于同一个任务。比如，一组变量名共享有意义的前缀，分别表示某个实体、它的编号和对应的表，读者很容易把它们看作同一类对象，归纳到一起。BTTF 用嵌入模型捕捉这种语义相似性，再通过聚类自动分组，把这种阅读中的归纳变成可以测量的属性。</p>
+<p>嵌入模型或大语言模型的嵌入空间可以想成一张“含义地图”：模型把词或代码片段变成一组数字，给它们安排位置。一个<a href="https://aclanthology.org/N13-1090/" target="_blank" rel="noopener noreferrer">经典例子</a>是“国王 − 男人 + 女人 ≈ 女王”，对这些词的向量做加减，结果会接近“女王”的位置。含义之间的关系，由此可以用距离和方向来表示。<sup class="citation" style="font-size:0.7em;line-height:0;white-space:nowrap">[<a href="#ref-8" aria-label="参考文献 8">8</a>]</sup></p>
+<p>我们把代码里的名字和片段放进这样的空间，寻找含义相关的组，再看它们如何分布。下面这个真实例子来自 Scalabrino 数据集：<code>propertyEntity</code>、<code>propertyEntityId</code> 和 <code>propertyTable</code> 分别是实体、它的编号和对应的表，都属于同一组；另外两类实体也各有一组相关名字。</p>
+<figure><img src="../images/blog/bttf-zh/figure-2.png" alt="Java 代码中的标识符经嵌入模型表示后，property、transitive 和 audited 三类相关名称分别聚成一组，initData 和 em 未归入这些组。"><figcaption>相关的实体、编号和表名被自动分到同一组。</figcaption></figure>
+<p>模型自动找到了这三组关系。我们读这段代码时，也会自然地把相关变量归到三类实体中，理解它在做三件事：准备 property 的数据、准备 transitive 的数据，以及准备 audited 的数据。我们通常不会逐个记住这些变量名，而会把它们抽象成这三件事，进而理解整个方法是在初始化数据。</p>
+
+<h3>上下文惊讶度：衡量理解代码的额外努力</h3>
+<p>代码里的信息能分组，还需要接得上前文。传统的字节熵只统计字符分布：同一批字符重新排列，统计结果可以不变，代码的含义却可能完全不同。它看不到某个值是否得到前文解释，也无法指出具体哪种写法导致阅读困难。</p>
+<p>我们读到 <code>total = price * ...</code> 时，很容易想到后面可能是数量。如果接下来出现的是一个毫无铺垫的值，就得停下来重新理解。我们的第二个直觉便来自这里：前文能否帮助我们理解接下来的内容，也应该成为可读性度量。</p>
+<p>大语言模型可以为这件事提供信号。在预训练时，生成式大语言模型的一项核心任务，就是根据前文预测下一个 token。经过训练，模型学会了给接下来可能出现的内容分配概率。实际出现的内容概率越低，“惊讶度”就越高。BTTF 用这种惊讶度找出代码里缺少铺垫、突然出现的内容，衡量它们有多出乎预期。在月份偏移的例子里，那串混淆字符很难从上下文中预期，这种异常便落到了具体的字面量特征上。</p>
+
+<p>因此，我们用嵌入度量衡量整个程序的<strong>语义分布，以及这些含义组织得有多紧凑</strong>；用惊讶度刻画阅读过程中，理解出乎预期的内容需要付出多少<strong>额外努力</strong><sup class="citation" style="font-size:0.7em;line-height:0;white-space:nowrap">[<a href="#ref-11" aria-label="参考文献 11">11</a>]</sup>。在这两类度量之外，我们也保留了部分传统度量。</p>
+
+<h2>准确评分，清晰解释</h2>
+<p>在六个人类评分数据集、超过一千份程序上，BTTF 的整体评分表现大幅领先所有参与评测的已有可读性方法。与人类判断的平均相关性相比最强基线最高提升了 0.101，达到了代码可读性评分领域<strong>新的 State-of-the-Art（SOTA）水平</strong>。<sup class="citation" style="font-size:0.7em;line-height:0;white-space:nowrap">[<a href="#ref-1" aria-label="参考文献 1">1</a>]</sup></p>
+<p>即使把此前研究中表现最好的零样本提示词<sup class="citation" style="font-size:0.7em;line-height:0;white-space:nowrap">[<a href="#ref-7" aria-label="参考文献 7">7</a>]</sup>用在 DeepSeek V4 Pro 和 GPT-6.1 Sol 这样的前沿模型上，BTTF 依然明显领先。大模型可以给出流畅的评价，但在判断代码究竟有多好读这件事上，我们这套明确的度量给出了更准确的分数。</p>
+<p>BTTF 的可解释性也解决了已有方法的核心问题。传统特征模型可能出现权重方向矛盾，或者依赖难以转化为具体改进方向的综合指标；深度模型和直接评分的大语言模型则无法列出每项代码属性究竟影响了多少分。BTTF 把 11 项特征的贡献逐项呈现，这些贡献直接构成最终评分，并且在所有测试的预训练模型组合中保持一致的方向。哪些属性扣了分、扣了多少、主要问题在哪里，都有明确依据。</p>
+
+<h2>敏锐识别代码可读性的下降</h2>
+<p>我们也把同一段代码故意改得更难读：删掉注释、弄乱名字、插入干扰代码，或者把排版挤在一起。这些修改给了我们一个清楚的检验标准：改完之后，可读性评分应该下降。</p>
+<p>在真实项目的 Java 和 Python 代码上，BTTF 分别识别出了 93.8% 和 87.6% 的可读性下降，大幅领先已有的本地可读性模型。即使与表现最强的本地基线 Dorn 相比，整体响应率差值也分别达到 14% 和 19.2%。</p>
+<p>这一表现与最前沿大语言模型在该项任务上的表现几乎持平。要知道，这些扰动对大语言模型来说相当刺眼，比如在代码中添加死代码，或直接把变量名改成无意义的字符。大语言模型很容易识别这类明显干扰；日常代码的阅读困难往往更细微，需要判断的远不止这些显眼的问题。</p>
+
+<h2>从指出问题，到量化每项影响</h2>
+<p>再看另一个例子（Buse 数据集中的第 66 个样本<sup class="citation" style="font-size:0.7em;line-height:0;white-space:nowrap">[<a href="#ref-2" aria-label="参考文献 2">2</a>]</sup>）。它只有三条语句：</p>
+<pre><code>mProgramTable.<span class="fn">changeSelection</span>(row, <span class="num">0</span>, <span class="kw">false</span>, <span class="kw">false</span>);
+<span class="kw">Program</span> p = (<span class="kw">Program</span>) mProgramTableModel.<span class="fn">getValueAt</span>(row, <span class="num">1</span>);
+<span class="kw">JPopupMenu</span> menu = devplugin.Plugin.<span class="fn">getPluginManager</span>()
+    .<span class="fn">createPluginContextMenu</span>(p, CapturePlugin.<span class="fn">getInstance</span>());</code></pre>
+<p class="caption">为方便阅读调整了换行；测量使用原始代码。</p>
+<p>人类读者给这段代码的评价偏低，DeepSeek 和 GPT-6.1 却给了高分。GPT 的一份解释也指出了短名 <code>p</code>、数字索引、含义不清的布尔参数和过长的调用。问题找到了几个，分数却还是很高。</p>
+<div class="table-wrap"><table aria-label="Buse 第 66 个样本的评分对比">
+<thead><tr><th scope="col">评价来源</th><th scope="col" class="number">评分</th></tr></thead>
+<tbody>
+<tr><th scope="row">人类读者</th><td class="number">2.60 / 5</td></tr>
+<tr class="cloud"><th scope="row">DeepSeek V4 Pro</th><td class="number">17 / 20</td></tr>
+<tr class="cloud"><th scope="row">GPT-6.1 Sol</th><td class="number">18 / 20</td></tr>
+<tr class="ours"><th scope="row">BTTF</th><td class="number">0.135 / 1</td></tr>
+</tbody></table></div>
+<p class="caption">两个大模型的评分为三次运行的平均值。</p>
+<p>BTTF 的低分更接近人类评价。最大的扣分来自操作符密度，然后是异常字面量，以及难以预测的标识符和赋值。长行也扣了分，但影响小得多。每项贡献都列在分数旁边，问题的相对轻重也随之明确。</p>
+<div class="table-wrap"><table aria-label="BTTF 的主要扣分项">
+<thead><tr><th scope="col">主要扣分项</th><th scope="col">这段代码中的问题</th><th scope="col" class="number">评分贡献</th></tr></thead>
+<tbody>
+<tr><th scope="row">操作符密度</th><td>三条语句中集中出现了许多操作。</td><td class="number">−0.271</td></tr>
+<tr><th scope="row">字面量尾部惊讶度</th><td>数字等具体值难以从前文预期。</td><td class="number">−0.115</td></tr>
+<tr><th scope="row">标识符起始惊讶度</th><td>部分名字的开头难以从前文预期。</td><td class="number">−0.053</td></tr>
+<tr><th scope="row">赋值值惊讶度</th><td>赋值右侧的内容难以从前文预期。</td><td class="number">−0.048</td></tr>
+<tr><th scope="row">最长行</th><td>原始代码最长一行有 116 个字符。</td><td class="number">−0.018</td></tr>
+</tbody></table></div>
+<p class="caption">列出主要扣分项，数值直接参与 BTTF 评分计算；绝对值越大，影响越大。</p>
+
+
+<h2>我的选择与下一步研究</h2>
+<p>我们有意没有采用视觉模型。对我而言，代码看起来是否舒服，更容易受到个人习惯和偏好的影响。我希望评分有更明确的依据，因此更倾向于采用有信息论背景、或受到认知科学启发的特征，测量代码中的信息怎样组织，以及阅读时理解这些信息需要付出多少努力。</p>
+<p>但我并不否认视觉特征的价值。我们毕竟是用眼睛读代码，排版和视觉布局能够承载大量信息，也确实会影响阅读。这让 Dorn 的视觉方案有独立的价值，也让 Mi 用 CNN 学习代码呈现的做法有合理的出发点。我选择另一条路线，是希望更清楚地说明评分依据。</p>
+<p>对于“大语言模型能应对低可读性代码，因此可读性的重要性已经减弱”这个观点，我并不认同。单个方法或类上的实验，距离真实项目中的持续阅读、跨文件理解和修改代码还有很大差别。即使在这些实验里影响较小，也只能说明模型在特定任务和规模下有一定的鲁棒性，不能说明可读性没有影响。我们将进一步研究，这种影响是否会随着真实项目规模的扩大而累积。</p>
+<p>何况，在金融核心代码、复杂系统的核心代码，以及涉及隐私的场景中，安全和保密要求往往限制了大语言模型的大规模使用。开发和审核仍然离不开人，至少目前如此。模型能够处理难读的代码，也不能替代人的理解和判断，更不能让面向人的可读性失去意义。</p>
+<section class="references" aria-labelledby="references-title">
+<h2 id="references-title">参考文献</h2>
+<ol style="font-size:0.9em;line-height:1.65;padding-left:1.5em">
+<li id="ref-1" style="margin-bottom:0.7em">Tairan Wang and Earl T. Barr. <a href="https://arxiv.org/abs/2610.04641" target="_blank" rel="noopener noreferrer">Back to the Future: Regressing Readability Features from LLMs</a>. arXiv:2610.04641, 2026.</li>
+<li id="ref-2" style="margin-bottom:0.7em">Raymond P. L. Buse and Westley R. Weimer. <a href="https://doi.org/10.1109/TSE.2009.70" target="_blank" rel="noopener noreferrer">Learning a Metric for Code Readability</a>. IEEE Transactions on Software Engineering, 36(4), 546–558, 2010.</li>
+<li id="ref-3" style="margin-bottom:0.7em">Daryl Posnett, Abram Hindle, and Premkumar Devanbu. <a href="https://doi.org/10.1145/1985441.1985454" target="_blank" rel="noopener noreferrer">A Simpler Model of Software Readability</a>. MSR, 73–82, 2011.</li>
+<li id="ref-4" style="margin-bottom:0.7em">Jonathan Dorn. <a href="https://web.eecs.umich.edu/~weimerw/students/dorn-mcs-paper.pdf" target="_blank" rel="noopener noreferrer">A General Software Readability Model</a>. University of Virginia, 2012.</li>
+<li id="ref-5" style="margin-bottom:0.7em">Simone Scalabrino, Mario Linares-Vásquez, Rocco Oliveto, and Denys Poshyvanyk. <a href="https://doi.org/10.1002/smr.1958" target="_blank" rel="noopener noreferrer">A Comprehensive Model for Code Readability</a>. Journal of Software: Evolution and Process, 30(6), e1958, 2018.</li>
+<li id="ref-6" style="margin-bottom:0.7em">Qing Mi, Jacky Keung, Yan Xiao, Solomon Mensah, and Yujin Gao. <a href="https://doi.org/10.1016/j.infsof.2018.07.006" target="_blank" rel="noopener noreferrer">Improving Code Readability Classification Using Convolutional Neural Networks</a>. Information and Software Technology, 104, 60–71, 2018.</li>
+<li id="ref-7" style="margin-bottom:0.7em">Wendkûuni C. Ouédraogo et al. <a href="https://arxiv.org/abs/2510.16579" target="_blank" rel="noopener noreferrer">Human-Aligned Code Readability Assessment with Large Language Models</a>. arXiv:2510.16579, 2025.</li>
+<li id="ref-8" style="margin-bottom:0.7em">Tomas Mikolov, Wen-tau Yih, and Geoffrey Zweig. <a href="https://aclanthology.org/N13-1090/" target="_blank" rel="noopener noreferrer">Linguistic Regularities in Continuous Space Word Representations</a>. NAACL-HLT, 746–751, 2013.</li>
+<li id="ref-9" style="margin-bottom:0.7em">Nick Chater and Paul Vitányi. <a href="https://doi.org/10.1016/S1364-6613(02)00005-0" target="_blank" rel="noopener noreferrer">Simplicity: A Unifying Principle in Cognitive Science?</a>. Trends in Cognitive Sciences, 7(1), 19–22, 2003.</li>
+<li id="ref-10" style="margin-bottom:0.7em">Nancy Pennington. <a href="https://doi.org/10.1016/0010-0285(87)90007-7" target="_blank" rel="noopener noreferrer">Stimulus Structures and Mental Representations in Expert Comprehension of Computer Programs</a>. Cognitive Psychology, 19(3), 295–341, 1987.</li>
+<li id="ref-11" style="margin-bottom:0.7em">Roger Levy. <a href="https://doi.org/10.1016/j.cognition.2007.05.006" target="_blank" rel="noopener noreferrer">Expectation-Based Syntactic Comprehension</a>. Cognition, 106(3), 1126–1177, 2008.</li>
+</ol>
+</section>
+<footer><p><a href="https://arxiv.org/abs/2610.04641" target="_blank" rel="noopener noreferrer"><em>Back to the Future: Regressing Readability Features from LLMs</em></a></p><p><a href="https://github.com/WangTairan/BTTF" target="_blank" rel="noopener noreferrer">代码与结果</a> · <a href="https://wangtairan.github.io/BTTF/" target="_blank" rel="noopener noreferrer">交互式可视化</a></p></footer>
+</main></body></html>
