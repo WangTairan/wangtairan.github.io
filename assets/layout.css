@@ -40,11 +40,10 @@
 
 /* Home page */
 .home-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: 225px minmax(0, 1fr) 310px;
+  align-items: start;
+  gap: 1.5rem;
   max-width: 1000px;
   margin: auto;
   padding: 2rem;
@@ -67,12 +66,12 @@
 }
 
 .intro-container {
-  flex: 1;
-  margin-top: -10rem;
+  min-width: 0;
 }
 
 .intro-container h1 {
   font-size: 2.5rem;
+  margin-top: 0;
   margin-bottom: 1rem;
 }
 
@@ -82,8 +81,19 @@
   color: #444;
 }
 
+@media (max-width: 900px) {
+  .home-container {
+    grid-template-columns: 225px minmax(0, 1fr);
+  }
+
+  .news-panel {
+    grid-column: 1 / -1;
+  }
+}
+
 @media (max-width: 600px) {
   .home-container {
+    grid-template-columns: minmax(0, 1fr);
     padding: 1.5rem 1rem;
   }
 
@@ -97,10 +107,6 @@
     margin: 0 auto;
   }
 
-  .intro-container {
-    flex-basis: 100%;
-    margin-top: 0;
-  }
 }
 
 .about,
