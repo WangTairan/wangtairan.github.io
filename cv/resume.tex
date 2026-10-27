@@ -1,0 +1,231 @@
+\documentclass[a4paper,11pt]{article}
+
+% ----- Packages -----
+\usepackage[margin=1.6cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{fontawesome5}
+\usepackage{ifthen}
+
+\setlength{\parindent}{0pt}
+
+% ----- Section formatting -----
+\titleformat{\section}{\Large\bfseries}{}{0em}{}[\titlerule]
+
+% ----- Compact spacing -----
+\setlist[itemize]{leftmargin=1.4em, itemsep=0.2em}
+
+% =====================================================
+% Resume Commands
+% =====================================================
+
+% #1 Title
+% #2 Subtitle (institution/status/link text)
+% #3 Date/location
+\newcommand{\resumeEntry}[3]{
+    \textbf{#1}\\
+    \makebox[\textwidth]{
+        #2
+        \hfill
+        #3
+    }\\[-1.2em]
+}
+
+\newcommand{\simpleEntry}[2]{
+    \textbf{#1}
+    \hfill
+    #2\\[-1.2em]
+}
+
+\newcommand{\resumeBullets}[1]{
+    \begin{itemize}[topsep=0.2em, itemsep=0.1em, parsep=0em]
+        #1
+    \end{itemize}
+    \vspace{0.3em}
+}
+
+\newcommand{\resumeBullet}[1]{
+    \item #1
+}
+
+
+\begin{document}
+
+% =====================================================
+% Header
+% =====================================================
+
+\begin{center}
+    {\huge \textbf{Tairan Wang}} \\[14pt]
+    \normalsize
+    \href{mailto:tairan.wang.22@ucl.ac.uk}{\faEnvelope\ \ tairan.wang.22@ucl.ac.uk}
+    \quad
+    \href{https://github.com/WangTairan}{\faGithub\ \ Github}
+    \quad
+    \href{https://wangtairan.github.io}{\faGlobe\ \ Homepage}
+\end{center}
+
+
+% =====================================================
+\section*{Education}
+
+\textbf{University College London} \hfill London, UK \\
+MEng Mathematical Computation, \textbf{First-Class Honours (78\%)}
+\hfill Sep 2022 -- Jun 2026
+
+
+
+% =====================================================
+\section*{Research Experience}
+
+
+\resumeEntry
+{Back to the Future: Regressing Readability Features from LLMs}
+{\textit{arXiv (First Author)}
+\href{https://arxiv.org/abs/2610.04641}{[Paper]}}
+{UCL \quad 2026}
+
+\resumeBullets{
+    \resumeBullet{Developed BTTF, an interpretable code readability model
+    combining linear regression with traditional code metrics,
+    embedding-based semantic organisation, and language-model predictability.}
+
+    \resumeBullet{Evaluated on 1,100 samples covering all six human-rated
+    code-readability datasets in our study, achieving \textbf{state-of-the-art
+    (SOTA)} overall performance; further validated robustness through
+    controlled code transformations.}
+}
+
+
+\resumeEntry
+{When Specifications Conflict: A Symmetry-Based Framework for Measuring LLM Preferences}
+{\textit{arXiv (First Author)}
+\href{https://arxiv.org/abs/2607.28384}{[Paper]}}
+{UCL \quad 2026}
+
+\resumeBullets{
+    \resumeBullet{Proposed a symmetry-based framework for measuring LLM
+    preferences under conflicting specifications, evaluated on 550 executable
+    conflicts across 11 mathematical function families, with extensions to
+    Boolean algebra, code generation, and clinical rules.}
+}
+
+
+
+\resumeEntry
+{Cognitive Modeling of Code Readability: Working Memory and Semantic Recoverability}
+{\textit{MEng Dissertation}
+\href{https://wangtairan.github.io/resources/publications/cognitive-modeling-of-code-readability.pdf}{[Paper]}}
+{UCL \quad 2026}
+
+\resumeBullets{
+    \resumeBullet{Developed CognaScore and PreFixScore to model working-memory
+    load and semantic recoverability in code comprehension; evaluated both on
+    function- and file-level human-rated readability datasets.}
+}
+
+
+
+\resumeEntry
+{Meow-Omni 1: A Multimodal Large Language Model for Feline Ethology}
+{\textit{NeurIPS 2026}
+\href{https://arxiv.org/abs/2605.09152}{[Paper]}}
+{UCL \quad 2026}
+
+\resumeBullets{
+    \resumeBullet{Developed an open-source quad-modal large language
+    model integrating video, audio, physiological time-series, and textual
+    reasoning for feline intent recognition.}
+}
+
+
+
+\resumeEntry
+{HoarePrompt: Structural Reasoning About Program Correctness in Natural Language}
+{\textit{ICSE 2026}
+\href{https://arxiv.org/abs/2503.19599}{[Paper]}}
+{UCL \& PKU \quad 2024--2025}
+
+\resumeBullets{
+    \resumeBullet{Proposed a framework for verifying program correctness from
+    natural-language specifications using Hoare triples, strongest
+    postcondition calculus, and \(k\)-induction for loops.}
+}
+
+
+
+% =====================================================
+\section*{Professional Experience}
+
+
+\resumeEntry
+{CTO, Alephedge}
+{\href{https://alephedge.com}{Website}\enspace
+\href{https://alephedge.com/zh/products/ordinal/}{Ordinal}}
+{Hong Kong \quad Sep 2026 -- Present}
+
+\resumeBullets{
+    \resumeBullet{Lead the design and development of Ordinal, an AI agent
+    combining general-purpose capabilities with financial research expertise,
+    integrating tools for data analysis, factor evaluation, and strategy
+    backtesting.}
+}
+
+
+\simpleEntry
+{Co-Founder \& Core Developer, Alephedge}
+{Hong Kong \quad May--Sep 2026}
+
+\resumeBullets{
+    \resumeBullet{Built and maintained the company intranet and public website.}
+}
+
+
+
+\begin{samepage}
+\simpleEntry
+{Summer Research Internship, UCL}
+{London \quad Jun--Sep 2025}
+
+\resumeBullets{
+    \resumeBullet{Worked on code readability model.}
+}
+\end{samepage}
+
+
+
+% =====================================================
+\section*{Technical Skills}
+
+\resumeBullets{
+    \resumeBullet{\textbf{Programming:} Python, Java, C.}
+
+    \resumeBullet{\textbf{AI \& Machine Learning:} Machine Learning,
+    Deep Learning, Large Language Models (LLMs), multimodal learning, and
+    AI agent development.}
+
+    \resumeBullet{\textbf{Software Engineering:} Full-stack development,
+    AI-assisted development workflows, and
+    maintainable software engineering practices.}
+
+    \resumeBullet{\textbf{Quantitative Computing:} Factor research,
+    portfolio construction, risk management.}
+}
+
+
+
+% =====================================================
+\section*{Academic Achievements}
+
+\resumeBullets{
+    \resumeBullet{Ranked first in multiple UCL Computer Science modules,
+    including COMP0010 (Software Engineering, \textbf{1/150}), COMP0169
+    (Machine Learning for Visual Computing, \textbf{1/130}), and COMP0024
+    (Artificial Intelligence and Neural Computing, \textbf{1/50}).}
+}
+
+
+
+\end{document}

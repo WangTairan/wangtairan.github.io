@@ -26,3 +26,19 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# CV source is tracked; generated files and supporting records stay local.
+/cv/build/
+/cv/resume.pdf
+/cv/supporting-documents/
+/cv/*.aux
+/cv/*.bbl
+/cv/*.bcf
+/cv/*.blg
+/cv/*.fdb_latexmk
+/cv/*.fls
+/cv/*.log
+/cv/*.out
+/cv/*.run.xml
+/cv/*.synctex.gz
+/cv/*.toc
