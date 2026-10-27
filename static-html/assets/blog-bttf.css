@@ -1,0 +1,106 @@
+/* Shared English/Chinese article typography. Never style site navigation here. */
+.bttf-article {
+  --ink: #222b33;
+  --muted: #606b75;
+  --accent: #17616b;
+  --line: #dce3e6;
+  --wash: #f3f7f7;
+  box-sizing: border-box;
+  max-width: 900px;
+  margin: auto;
+  padding: 36px 32px 64px;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+.bttf-article * { box-sizing: border-box; }
+.bttf-article header { padding: 42px 0 16px; }
+.bttf-article h1 {
+  font-size: clamp(30px, 5vw, 46px);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  margin: 14px 0 20px;
+}
+.bttf-article h2 { font-size: 27px; line-height: 1.4; margin: 46px 0 16px; }
+.bttf-article h3 { font-size: 21px; line-height: 1.4; margin: 28px 0 12px; }
+.bttf-article p { margin: 14px 0; }
+.bttf-article header .lead { font-size: 21px; line-height: 1.65; }
+.bttf-article header .byline {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  font-size: 18px;
+}
+.bttf-article .byline .author { font-weight: 600; }
+.bttf-article .byline time { white-space: nowrap; }
+.bttf-article .eyebrow { font-size: 14px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
+.bttf-article figure { margin: 26px 0; }
+.bttf-article figure img { display: block; width: 100%; height: auto; max-width: 100%; border-radius: 6px; }
+.bttf-article :is(figcaption, .caption) { font-size: 14px; line-height: 1.65; color: var(--muted); margin: 10px 0 18px; }
+.bttf-article .table-wrap { overflow-x: auto; margin: 22px 0 8px; }
+.bttf-article table { border-collapse: collapse; width: 100%; font-size: 15px; line-height: 1.65; }
+.bttf-article :is(th, td) { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.bttf-article thead th { background: var(--wash); font-weight: 600; border-top: 1px solid var(--line); }
+.bttf-article .number { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.bttf-article .ours { background: #eef6f3; }
+.bttf-article .cloud { background: #f5f7fb; }
+.bttf-article table.features td:first-child { width: 24%; }
+.bttf-article table.features td:nth-child(2) { width: 30%; }
+.bttf-article .equation {
+  margin: 22px 0;
+  padding: 18px 22px;
+  background: var(--wash);
+  border-left: 3px solid var(--accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  overflow-wrap: anywhere;
+}
+.bttf-article :is(code, pre) { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+.bttf-article code { font-size: 0.89em; }
+.bttf-article pre {
+  padding: 20px 22px;
+  background: #f5f6f8;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.bttf-article pre code { font-size: inherit; }
+.bttf-article .kw { color: #7155a1; }
+.bttf-article .fn { color: #17616b; }
+.bttf-article .num { color: #9c5b18; }
+.bttf-article .takeaway { border-left: 3px solid var(--accent); padding: 2px 0 2px 20px; margin: 24px 0; }
+.bttf-article :is(ul, ol) { padding-left: 24px; }
+.bttf-article li { margin: 9px 0; }
+.bttf-article footer { margin-top: 46px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 15px; color: var(--muted); }
+.bttf-article footer p { margin: 10px 0; }
+
+@media (max-width: 600px) {
+  .bttf-article { font-size: 17px; padding: 22px 18px 42px; }
+  .bttf-article header { padding-top: 28px; }
+  .bttf-article h2 { font-size: 24px; }
+  .bttf-article :is(th, td) { padding: 9px 8px; }
+  .bttf-article table.features { min-width: 640px; }
+  .bttf-article .benchmark { min-width: 770px; }
+  .bttf-article pre { padding: 16px 14px; font-size: 12px; }
+  .bttf-article header .lead { font-size: 19px; }
+  .bttf-article header .byline { font-size: 17px; gap: 8px 20px; }
+}
+
+@media print {
+  .top-navbar, .language-switch { display: none; }
+  .bttf-article { max-width: none; padding: 0; font-size: 12px; }
+  .bttf-article a { color: inherit; }
+  .bttf-article :is(h2, h3) { break-after: avoid; }
+  .bttf-article :is(tr, figure) { break-inside: avoid; }
+  .bttf-article table { font-size: 11px; }
+  .bttf-article header .lead { font-size: 14px; }
+  .bttf-article header .byline { font-size: 12px; }
+  .bttf-article .table-wrap { overflow: visible; }
+  .bttf-article :is(.benchmark, table.features) { min-width: 0; }
+}

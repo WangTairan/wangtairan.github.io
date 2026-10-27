@@ -8,7 +8,7 @@
 }
 
 .navbar-inner {
-  max-width: 1000px;
+  max-width: var(--site-content-width);
   margin: 0 auto;
   padding: 0.75rem 1rem;
   display: flex;
@@ -16,6 +16,7 @@
   column-gap: 2rem;
   justify-content: space-between;
   align-items: center;
+  line-height: 1.4;
 }
 
 .navbar-inner ul {
@@ -35,7 +36,7 @@
 }
 
 .navbar-inner a:hover {
-  color: #1abc9c;
+  color: var(--site-link);
 }
 
 /* Home page */
@@ -44,7 +45,7 @@
   grid-template-columns: 225px minmax(0, 1fr) 310px;
   align-items: start;
   gap: 1.5rem;
-  max-width: 1000px;
+  max-width: var(--site-content-width);
   margin: auto;
   padding: 2rem;
 }
@@ -92,7 +93,7 @@
   min-height: 1.4em;
   font-size: 0.6rem;
   line-height: 1.4;
-  color: #666;
+  color: var(--site-muted);
   text-align: center;
 }
 
@@ -138,7 +139,7 @@
 
 .about,
 .contact {
-  max-width: 1000px;
+  max-width: var(--site-content-width);
   margin: 0 auto;
   padding: 2rem;
   line-height: 1.6;

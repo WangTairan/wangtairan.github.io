@@ -21,6 +21,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
+
+      - name: Generate static resume update date
+        run: python3 scripts/update_resume_date.py
+
+      - name: Test resume date generation
+        run: python3 -m unittest discover -s scripts -p 'test_*.py'
 
       - name: Check local website links
         run: python3 scripts/check_local_links.py

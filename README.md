@@ -25,7 +25,8 @@ static-html/
 │   ├── style.css               Stylesheet entry point
 │   ├── base.css                Global element styles
 │   ├── layout.css              Navigation and page layout
-│   └── components.css          Cards, tags, badges, and search controls
+│   ├── components.css          Cards, tags, badges, and search controls
+│   └── blog-bttf.css           Shared, scoped bilingual article typography
 ├── js/
 │   ├── project-search.js       Client-side project filtering
 │   └── blog-search.js          Client-side blog filtering
@@ -60,6 +61,15 @@ The editor's PDF preview does not automatically replace the downloadable
 résumé. Whenever a CV update is published, export the approved current document
 and update the website PDF explicitly. Source and website biography are
 maintained separately; do not silently rewrite either during file imports.
+Keep PDF hyperlinks visibly underlined and dark blue using the shared `\cvLink`
+macro; do not rely on viewer-specific annotation borders. Use `\cvResource`
+for upright, square-bracketed resource labels such as `[PDF]` and `[arXiv]`.
+In CV research entries, place the `[PDF]` link first and point it
+directly to the published PDF. Follow it with an arXiv abstract-page link or a
+linked conference name pointing to the paper's official conference page, as
+applicable. Keep authorship labels separate from the links and upright.
+Include months in research dates, not just years; use research periods where
+known rather than award or acceptance dates (HoarePrompt: May 2024--Jan 2025).
 
 ### Website conventions
 
@@ -69,6 +79,13 @@ maintained separately; do not silently rewrite either during file imports.
   semantic dates and link news items to project anchors where relevant. Its
   height is capped for scrolling; it sits beside the introduction on desktop
   and below it on narrower screens.
+- Home's resume link has a static update date in `D Mon YYYY` format. Run
+  `python3 scripts/update_resume_date.py` after replacing the PDF. Deployments
+  run it automatically before packaging. The script uses the PDF's last content
+  change in Git (London calendar date), not the latest site deployment or
+  checkout time; an uncommitted local PDF uses its filesystem modification time.
+  Keep full checkout history in Actions so unrelated pushes do not change this
+  date. There is no browser-side date fetching or JavaScript dependency.
 - Portraits live in `resources/personal/portraits/`, with untouched source files
   in `originals/` and 900×1200 (3:4) cropped files in `display/`, using
   month-based filenames such as `profile-2026-09.png`. Home references only
@@ -87,6 +104,20 @@ maintained separately; do not silently rewrite either during file imports.
   `index.html`, `projects.html`, `blog/index.html`, and every blog article.
 - All pages load `assets/style.css`, which imports the three CSS layers listed
   above. Put new rules in the most specific existing layer.
+- Ordinary `<a>` links receive the site's default colour, hover, and keyboard
+  focus styles without requiring a class. `default-link` remains a component
+  hook for download/project links, not an opt-in to the global appearance.
+  Navbar, company logo, News, social-button, and card links intentionally use
+  component-specific styles. Keep spacing inside those components rather than
+  adding margins to every link.
+- Shared colours and the main content width live in `assets/base.css` as
+  `--site-*` variables. Scope reusable class names such as `.description` to
+  their component; do not add competing global declarations for different pages.
+- All HTML pages and the three CSS imports must use the same style version
+  query when shared CSS changes. `test_shared_styles.py` checks consistency.
+  The two BTTF language versions share `assets/blog-bttf.css`, scoped to
+  `.bttf-article`; article styles must not redefine global anchors, body, or
+  site navigation. Preserve pre-rendered KaTeX in the older articles.
 - Project search reads `data-title`, `data-authors`, `data-tags`, and `data-date`
   from every `.project-block`. Keep those metadata attributes accurate; project
   dates are stored for ordering and search but are not displayed.
@@ -153,6 +184,7 @@ Useful non-visual checks:
 ```sh
 git diff --check
 python3 scripts/check_local_links.py
+python3 -m unittest discover -s scripts -p 'test_*.py'
 curl -I http://localhost:4173/
 curl -I http://localhost:4173/projects.html
 curl -I http://localhost:4173/blog/

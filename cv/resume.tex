@@ -4,7 +4,9 @@
 \usepackage[margin=1.6cm]{geometry}
 \usepackage{titlesec}
 \usepackage{enumitem}
-\usepackage{hyperref}
+\usepackage{xcolor}
+\definecolor{cvlink}{HTML}{174D70}
+\usepackage[colorlinks=true,allcolors=cvlink]{hyperref}
 \usepackage{setspace}
 \usepackage{fontawesome5}
 \usepackage{ifthen}
@@ -20,6 +22,9 @@
 % =====================================================
 % Resume Commands
 % =====================================================
+
+\newcommand{\cvLink}[2]{\href{#1}{\underline{#2}}}
+\newcommand{\cvResource}[2]{[\cvLink{#1}{#2}]}
 
 % #1 Title
 % #2 Subtitle (institution/status/link text)
@@ -60,11 +65,11 @@
 \begin{center}
     {\huge \textbf{Tairan Wang}} \\[14pt]
     \normalsize
-    \href{mailto:tairan.wang.22@ucl.ac.uk}{\faEnvelope\ \ tairan.wang.22@ucl.ac.uk}
+    \cvLink{mailto:tairan.wang.22@ucl.ac.uk}{\faEnvelope\ \ tairan.wang.22@ucl.ac.uk}
     \quad
-    \href{https://github.com/WangTairan}{\faGithub\ \ Github}
+    \cvLink{https://github.com/WangTairan}{\faGithub\ \ Github}
     \quad
-    \href{https://wangtairan.github.io}{\faGlobe\ \ Homepage}
+    \cvLink{https://wangtairan.github.io}{\faGlobe\ \ Homepage}
 \end{center}
 
 
@@ -83,9 +88,10 @@ MEng Mathematical Computation, \textbf{First-Class Honours (78\%)}
 
 \resumeEntry
 {Back to the Future: Regressing Readability Features from LLMs}
-{\textit{arXiv (First Author)}
-\href{https://arxiv.org/abs/2610.04641}{[Paper]}}
-{UCL \quad 2026}
+{\cvResource{https://wangtairan.github.io/resources/publications/back-to-the-future-regressing-readability-features-from-llms.pdf}{PDF}\enspace
+\cvResource{https://arxiv.org/abs/2610.04641}{arXiv}\enspace
+(First Author)}
+{UCL \quad Oct 2026}
 
 \resumeBullets{
     \resumeBullet{Developed BTTF, an interpretable code readability model
@@ -101,9 +107,10 @@ MEng Mathematical Computation, \textbf{First-Class Honours (78\%)}
 
 \resumeEntry
 {When Specifications Conflict: A Symmetry-Based Framework for Measuring LLM Preferences}
-{\textit{arXiv (First Author)}
-\href{https://arxiv.org/abs/2607.28384}{[Paper]}}
-{UCL \quad 2026}
+{\cvResource{https://wangtairan.github.io/resources/publications/when-specifications-conflict.pdf}{PDF}\enspace
+\cvResource{https://arxiv.org/abs/2607.28384}{arXiv}\enspace
+(First Author)}
+{UCL \quad Jul 2026}
 
 \resumeBullets{
     \resumeBullet{Proposed a symmetry-based framework for measuring LLM
@@ -116,9 +123,9 @@ MEng Mathematical Computation, \textbf{First-Class Honours (78\%)}
 
 \resumeEntry
 {Cognitive Modeling of Code Readability: Working Memory and Semantic Recoverability}
-{\textit{MEng Dissertation}
-\href{https://wangtairan.github.io/resources/publications/cognitive-modeling-of-code-readability.pdf}{[Paper]}}
-{UCL \quad 2026}
+{\cvResource{https://wangtairan.github.io/resources/publications/cognitive-modeling-of-code-readability.pdf}{PDF}\enspace
+MEng Dissertation}
+{UCL \quad Jun 2026}
 
 \resumeBullets{
     \resumeBullet{Developed CognaScore and PreFixScore to model working-memory
@@ -130,9 +137,9 @@ MEng Mathematical Computation, \textbf{First-Class Honours (78\%)}
 
 \resumeEntry
 {Meow-Omni 1: A Multimodal Large Language Model for Feline Ethology}
-{\textit{NeurIPS 2026}
-\href{https://arxiv.org/abs/2605.09152}{[Paper]}}
-{UCL \quad 2026}
+{\cvResource{https://wangtairan.github.io/resources/publications/meow-omni-1.pdf}{PDF}\enspace
+\cvResource{https://neurips.cc/virtual/2026/poster/151616}{NeurIPS 2026}}
+{UCL \quad May 2026}
 
 \resumeBullets{
     \resumeBullet{Developed an open-source quad-modal large language
@@ -144,9 +151,9 @@ MEng Mathematical Computation, \textbf{First-Class Honours (78\%)}
 
 \resumeEntry
 {HoarePrompt: Structural Reasoning About Program Correctness in Natural Language}
-{\textit{ICSE 2026}
-\href{https://arxiv.org/abs/2503.19599}{[Paper]}}
-{UCL \& PKU \quad 2024--2025}
+{\cvResource{https://wangtairan.github.io/resources/publications/hoareprompt.pdf}{PDF}\enspace
+\cvResource{https://conf.researchr.org/details/icse-2026/icse-2026-research-track/164/HoarePrompt-Structural-Reasoning-About-Program-Correctness-in-Natural-Language}{ICSE 2026}}
+{UCL \& PKU \quad May 2024--Jan 2025}
 
 \resumeBullets{
     \resumeBullet{Proposed a framework for verifying program correctness from
@@ -162,8 +169,8 @@ MEng Mathematical Computation, \textbf{First-Class Honours (78\%)}
 
 \resumeEntry
 {CTO, Alephedge}
-{\href{https://alephedge.com}{Website}\enspace
-\href{https://alephedge.com/zh/products/ordinal/}{Ordinal}}
+{\cvResource{https://alephedge.com}{Website}\enspace
+\cvResource{https://alephedge.com/zh/products/ordinal/}{Ordinal}}
 {Hong Kong \quad Sep 2026 -- Present}
 
 \resumeBullets{

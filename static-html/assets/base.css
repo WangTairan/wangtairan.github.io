@@ -1,3 +1,11 @@
+:root {
+  --site-link: #1abc9c;
+  --site-link-hover: #1a7765;
+  --site-brand: #0e3f70;
+  --site-muted: #666;
+  --site-content-width: 1000px;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -6,21 +14,25 @@ html, body {
   font-family: sans-serif;
 }
 
-a.default-link {
-  color: #1abc9c;
+/* Ordinary links work without a class; explicit component styles take priority. */
+:where(a) {
+  color: var(--site-link);
   text-decoration: none;
-  margin-left: 0.5rem;
+  text-underline-offset: 0.15em;
   transition: color 0.3s ease;
 }
 
-a.default-link:hover {
+:where(a:hover) {
   text-decoration: underline;
-  color: #1a7765;
+  color: var(--site-link-hover);
 }
 
-p code,
-li code,
-span code {
+:where(a:focus-visible, button:focus-visible, input:focus-visible) {
+  outline: 2px solid var(--site-brand);
+  outline-offset: 3px;
+}
+
+.blog-body :is(p, li, span) code {
   background-color: #cccccc;
   color: #ac1919;
   padding: 0.2em 0.4em;
